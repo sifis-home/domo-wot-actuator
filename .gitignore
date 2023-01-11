@@ -1,0 +1,7 @@
+.pio
+.idea/
+cmake
+CMakeListsPrivate.txt
+cmake-*/
+flasher/ca/
+flasher/out/
