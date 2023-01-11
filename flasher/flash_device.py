@@ -148,11 +148,11 @@ found = False
 DEVICE_TYPE = ''
 
 while not found:
-    print("\n\nTipi di device supportati: ")
+    print("\n\nSupported devices: ")
     for i, name in DEVICE_TYPES.items():
         print("%s: %s" % (i, name))
     try:
-        selected = int(input("\nInserire il tipo di device da flashare: "))
+        selected = int(input("\nSelect type of device to flash: "))
     except Exception as ex:
         continue
 
@@ -160,16 +160,15 @@ while not found:
         DEVICE_TYPE = DEVICE_TYPES[selected]
         found = True
 
-print("Tipo di Device Selezionato: %s" % DEVICE_TYPE)
+print("Selected type: %s" % DEVICE_TYPE)
 
 PORT = "/dev/ttyUSB0"
 if len(sys.argv) > 1:
     PORT = sys.argv[1]
 
 while True:
-    input("Premere un tasto per procedere con il flashing di un nuovo device ... ")
-    print("Remove data directory")
-    
+    input("Press a button to proceed ... ")
+
     if os.path.isdir('data'):
         shutil.rmtree("./data")
     try:
@@ -197,7 +196,7 @@ while True:
             while mac == "":
                 mac = m.get_mac_address()
                 if mac == "":
-                    input("Resettare la board, staccare e riattaccare cavetto Vcc  ... e premere un tasto")
+                    input("Reset board, disconnect and connect again Vcc cable  ... and press a button")
             print("MAC Address: " + mac)
             if DEVICE_TYPE != "shelly1plus":
                 ok = m.generate_keys()
@@ -205,14 +204,14 @@ while True:
                 (user_login, user_password) = m.generate_sec_json_file()
             if DEVICE_TYPE == "shelly1plus":
                 (user_login, user_password) = m.generate_sec_json_file_shelly1plus()
-            input("Resettare la board, staccare e riattaccare cavetto Vcc  ... e premere un tasto")
+            input("Reset board, disconnect and connect again Vcc cable  ... and press a button")
             print("Erasing flash")
             ok = m.run_erase()
             assert ok
-            input("Resettare la board, staccare e riattaccare cavetto Vcc  ... e premere un tasto")
+            input("Reset board, disconnect and connect again Vcc cable  ... and press a button")
             print("Uploading sec material")
             ok = m.run_uploadfs()
-            input("Resettare la board, staccare e riattaccare cavetto Vcc  ... e premere un tasto")
+            input("Reset board, disconnect and connect again Vcc cable  ... and press a button")
             print("Flashing program")
             shutil.copy("/fw_binaries/" + DEVICE_TYPE + ".bin", "/work_dir/.pio/build/" + DEVICE_TYPE + "/firmware.bin")
             if DEVICE_TYPE != "shelly1plus":
@@ -226,4 +225,4 @@ while True:
                 file_object.write(DEVICE_TYPE + "\t" + mac + "\t" + user_login + "\t" + user_password + "\n")
         except Exception as ex:
             print(ex)
-            input("Un tasto per riprovare ...")
+            input("Press a button to retry ...")
