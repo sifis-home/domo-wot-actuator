@@ -1,7 +1,6 @@
 # domo-wot-actuator
 
 [![Actions Status][actions badge]][actions]
-[![CodeCov][codecov badge]][codecov]
 [![LICENSE][license badge]][license]
 
 DoMO WoT implementation for the WiFi actuators provided by DoMO [Web of Things](https://www.w3.org/TR/wot-thing-description/)
@@ -25,10 +24,8 @@ This software has been partially developed in the scope of the H2020 project SIF
 
 <!-- Links -->
 [actions]: https://github.com/domo-iot/domo-wot-actuator/actions
-[codecov]: https://codecov.io/gh/domo-iot/domo-wot-actuator
 [license]: LICENSE
 
 <!-- Badges -->
 [actions badge]: https://github.com/domo-iot/domo-wot-actuator/workflows/domo-wot-actuator/badge.svg
-[codecov badge]: https://codecov.io/gh/domo-iot/domo-wot-actuator/branch/master/graph/badge.svg
 [license badge]: https://img.shields.io/badge/license-MIT-blue.svg
